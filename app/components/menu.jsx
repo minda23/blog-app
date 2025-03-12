@@ -4,18 +4,19 @@ import Blogs from "./blogs";
 import './menu.css';
 
 const app = () => {
-    const [BlogData, setBlogData] = useState([]);
-
-
 
     return (
         <div>
             <ul className="menu">
+                <li>Blogs</li>
+                <li>Tags</li>
                 <li>Home</li>
                 <li>About</li>
             </ul>
-        </div>
-
+            <div>
+                <img src="/img/search.png" alt="Search Icon" />
+            </div>
+        </div >
     )
 }
 
