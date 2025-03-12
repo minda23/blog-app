@@ -1,0 +1,10 @@
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: 1rem;
+    list-style-type: none;
+    margin-right: 3rem;
+    font-size: 1.5rem;
+    color: white;
+}
