@@ -17,7 +17,7 @@ const app = () => {
 
                 console.error('Error fetching data:', error);
             });
-    }, []);
+    }, [1]);
 
 
     return (

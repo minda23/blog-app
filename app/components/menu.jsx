@@ -12,9 +12,9 @@ const app = () => {
                 <li>Tags</li>
                 <li>Home</li>
                 <li>About</li>
+                <img className="search-btn" src="./img/icons8-search.svg" alt="Search Icon" width="37" height="37" />
             </ul>
             <div>
-                <img src="/img/search.png" alt="Search Icon" />
             </div>
         </div >
     )
