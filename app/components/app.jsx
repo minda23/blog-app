@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useReducer, useContext } from "react";
-import Blogs from "./blogs";
+import Blogs from "./blogCard";
 import Menu from "./menu";
 
 const app = () => {
@@ -17,7 +17,7 @@ const app = () => {
 
                 console.error('Error fetching data:', error);
             });
-    }, [1]);
+    }, []);
 
 
     return (

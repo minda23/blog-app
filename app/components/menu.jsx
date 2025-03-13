@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useReducer, useContext } from "react";
-import Blogs from "./blogs";
+import Blogs from "./blogCard";
 import './menu.css';
 
 const app = () => {
