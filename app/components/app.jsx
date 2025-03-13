@@ -2,16 +2,30 @@
 import { useState, useEffect, useReducer, useContext } from "react";
 import Blogs from "./blogCard";
 import Menu from "./menu";
+import moment from "moment";
 
 const app = () => {
     const [BlogData, setBlogData] = useState([]);
+
+    BlogData.sort((a, b) => {
+        if (a.created_at > b.created_at) {
+            return 1;
+        } else if (a.created_at < b.created_at) {
+            return -1;
+        }
+        return 0;
+    })
 
     useEffect(() => {
         fetch("https://jsonfakery.com/blogs")
             .then(response => response.json())
             .then(data => {
+                const convertedData = data.map((item) => ({
+                    ...item,
+                    created_at: moment(item.created_at, "-----MM-DD-YYYY")
 
-                setBlogData(data)
+                }))
+                setBlogData(convertedData)
             })
             .catch(error => {
 
@@ -26,6 +40,7 @@ const app = () => {
             {BlogData.map((blog, key) => (
                 <div key={key}>
                     <Blogs
+
                         blog={blog}
                     />
 
