@@ -1,4 +1,26 @@
-.blog-text {
+.blog-info {
     display: flex;
     flex-direction: column;
+    flex: 1;
+}
+
+
+.date-blog {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.title-blog {
+    font-size: 1.8rem;
+    font-weight: bold;
+
+}
+
+.subtitle-blog {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.img-blog {
+    border-radius: 0.5rem;
 }

@@ -1,3 +1,26 @@
 body {
     background-color: #030712;
 }
+
+.blog-section {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.blogs {
+    flex: 3;
+}
+
+
+.move-blog {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 2rem;
+}
+
+.numbers-pages {
+    letter-spacing: 0.3rem;
+}
