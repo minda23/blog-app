@@ -1,0 +1,6 @@
+.post p {
+    font-size: 1.2rem;
+    letter-spacing: 0.3rem;
+    font-weight: bold;
+    max-width: 56rem;
+}

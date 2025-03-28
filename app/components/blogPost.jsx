@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import './blogCard.css';
+import './blogPost.css';
 const blogPost = (props) => {
     const { blog } = props;
 
@@ -8,7 +8,7 @@ const blogPost = (props) => {
     return (
         <>
             (
-            <div>
+            <div className="post">
                 <p>{blog.main_content}</p>
             </div>
 
