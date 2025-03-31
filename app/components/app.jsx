@@ -138,11 +138,11 @@ const app = () => {
                         <div className="blog-cards">
                             {sliceData.map((blog) => (
                                 <div className="blog-container" key={blog.id}>
-                                    {!!selectedBlogByTag && <BlogCard
+                                    <BlogCard
                                         setter={setSelectedBlogId}
-                                        blog={emptyTag}
+                                        blog={blog}
 
-                                    />}
+                                    />
                                 </div>
                             ))}
                         </div>
