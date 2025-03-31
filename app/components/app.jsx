@@ -6,13 +6,16 @@ import Menu from "./menu";
 import moment from "moment";
 import './app.css';
 import Tags from "./Tags";
+import Loader from "./Loader";
 
 
 
 const app = () => {
     const [BlogData, setBlogData] = useState([]);
     const [selectedBlogId, setSelectedBlogId] = useState("");
+    const [selectedBlogByTag, setSelectedBlogByTag] = useState("");
     const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(false)
 
     //- [ ]  ked sa klikne next gombik tak zobrazi ine blogy ako aktualne
     //  ked sa klikne na previous tak sa zobrazia predošle blogy
@@ -23,16 +26,6 @@ const app = () => {
     // takže čo máme rozdeliť na strany ?
     // no rozdeliť máme vlastne tie blogPosty a momentalne ich mám 10 a chcem aby na každej stranke boli len po 5
     // ako to spravim, 
-
-
-
-    const postsPerPage = 5; // napr. 5 blogov na stránku
-    const TotalPostCount = 10;
-    const totalPages = 2;
-
-    //const indexOfLastPost = currentPage * postsPerPage;
-    //const indexOfFirstPost = indexOfLastPost - postsPerPage;
-
 
     function handleNext() {
         setPage(page + 1)
@@ -51,6 +44,20 @@ const app = () => {
         emptyBlog = blogfull;
     }
 
+    let emptyTag = {};
+    if (selectedBlogByTag !== "") {
+        let emptyTag1 = BlogData.filter((element) => element.category === selectedBlogByTag)
+        // čo je vlastne emptyTag tie BlogData filtrujeme na zaklade kategorie a ukladáme do premennej
+        // že ked sa kategoria nachádza v blogdata a rovna se selectovanemu tagu ale čo s tym teraz
+        emptyTag = emptyTag1
+
+    }
+
+
+
+
+
+
     BlogData.sort((a, b) => {
         if (a.created_at > b.created_at) {
             return 1;
@@ -61,6 +68,7 @@ const app = () => {
     })
 
     useEffect(() => {
+        setIsLoading(true);
         fetch("https://jsonfakery.com/blogs")
             .then(response => response.json())
             .then(data => {
@@ -87,46 +95,71 @@ const app = () => {
                     created_at: moment(item.created_at, "-----MM-DD-YYYY"),
                 }))
                 setBlogData(convertedData)
+                setIsLoading(false);
 
 
 
             }).catch(error => {
                 console.error('Error fetching data:', error);
+                setIsLoading(false);
 
             });
-
     },
-        [BlogData, selectedBlogId,]);
+        []);
 
     const start = page * 10;
     const end = (page + 1) * 10;
     const sliceData = BlogData.slice(start, end)
+    const TotalBlogs = BlogData.length;
+    const TotalPages = TotalBlogs / 10
+
+
+
+    if (isLoading) {
+        return <Loader />
+    }
+
     return (
         <div>
             <Menu />
             <div className="blog-section">
-                <Tags />
                 {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
-                {!selectedBlogId &&
-                    <div className="blogs">
-                        {sliceData.map((blog) => (
-                            <div className="blogs" key={blog.id}>
-                                <BlogCard setter={setSelectedBlogId} blog={blog} />
-                            </div>
-                        ))}
+                {!selectedBlogId && (
+                    <div className="blogs-container">
+
+                        <div className="all-tags-container">
+                            {sliceData.map((blog) => (
+                                <div className="tags-wrapper" key={blog.id}>
+                                    <Tags blog={blog} setter={setSelectedBlogByTag} />
+
+                                </div>
+                            ))}
+                        </div>
+                        <div className="blog-cards">
+                            {sliceData.map((blog) => (
+                                <div className="blog-container" key={blog.id}>
+                                    {!!selectedBlogByTag && <BlogCard
+                                        setter={setSelectedBlogId}
+                                        blog={emptyTag}
+
+                                    />}
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                }
+                )}
             </div>
+
 
             <div className="move-blog">
                 <p onClick={() => { handlePrevious() }} className="previous">previous</p>
-                <p className="numbers-pages">1 of 2</p>
+                <p className="numbers-pages">{page + 1} of {TotalPages}</p>
                 <p onClick={() => { handleNext() }} className="next">next</p>
-
             </div>
         </div>
     );
 
 }
+
 
 export default app

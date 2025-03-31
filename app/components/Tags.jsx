@@ -1,17 +1,13 @@
 import React from 'react';
 import './Tags.css';
 
-const Tags = () => {
-    const tagList = ["React", "JavaScript", "CSS", "HTML", "Node.js",
-        "Web Development", "python", "Jquery", "Next.js", "Java", "Udemy", "Joomla", "wordpress"];
+const Tags = (props) => {
+
+    const { blog, setter } = props;
 
     return (
         <div className="all-posts">
-            {tagList.map((tag, index) => (
-                <div key={index} className="tag">
-                    {tag}
-                </div>
-            ))}
+            <p onClick={() => { setter(blog.category) }}>{blog.category}</p>
         </div>
     );
 };
