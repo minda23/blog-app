@@ -13,7 +13,7 @@ import Loader from "./Loader";
 const app = () => {
     const [BlogData, setBlogData] = useState([]);
     const [selectedBlogId, setSelectedBlogId] = useState("");
-    const [selectedBlogByTag, setSelectedBlogByTag] = useState("");
+    const [selectedTag, setSelectedBlogByTag] = useState("");
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false)
 
@@ -44,18 +44,19 @@ const app = () => {
         emptyBlog = blogfull;
     }
 
-    let emptyTag = {};
-    if (selectedBlogByTag !== "") {
-        let emptyTag1 = BlogData.filter((element) => element.category === selectedBlogByTag)
+    let filteredBlogByTag = BlogData; // vzdy ked mi vypisuje hodnotu undefined treba console.log že čo tam je vlaste či 
+    // to čo očakávam.  // 47 mame všetky blogy
+    if (selectedTag !== "") { // ked je tag selectovany tak sa vyfiltruju blogy ktore k nemu patria.
+        let emptyTag1 = BlogData.filter((element) => element.category === selectedTag)
         // čo je vlastne emptyTag tie BlogData filtrujeme na zaklade kategorie a ukladáme do premennej
-        // že ked sa kategoria nachádza v blogdata a rovna se selectovanemu tagu ale čo s tym teraz
-        emptyTag = emptyTag1
+        // že ked sa kategoria nachádza v blogdata a rovna se selectovanemu tagu ale čo s tym teraz ?
+        filteredBlogByTag = emptyTag1;
 
     }
 
-
-
-
+    // no dobre máme vyfiltrovany blog ale kde ho chcem použiť 
+    // teraz musim posielať ako prop cely blog v blogCard ako tam pošlem
+    // ten vyfiltrovany blog
 
 
     BlogData.sort((a, b) => {
@@ -109,11 +110,17 @@ const app = () => {
 
     const start = page * 10;
     const end = (page + 1) * 10;
-    const sliceData = BlogData.slice(start, end)
-    const TotalBlogs = BlogData.length;
-    const TotalPages = TotalBlogs / 10
+    const sliceData = filteredBlogByTag.slice(start, end);
+    const TotalBlogs = filteredBlogByTag.length;
+    const TotalPages = Math.ceil(TotalBlogs / 10); // ceiling znamena strop 
 
+    // chceme dostať všetky tagy z BlogData
+    const mySet1 = new Set();
 
+    BlogData.forEach((blog) => mySet1.add(blog.category)) // for each iteruje cez zoznam spravi niečo z hodnotu 
+    // ale nevracia nam niečo čo by sme mohli zobraziť.
+
+    const tags = Array.from(mySet1); // array from vytvori pole zo setu.
 
     if (isLoading) {
         return <Loader />
@@ -126,23 +133,23 @@ const app = () => {
                 {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
                 {!selectedBlogId && (
                     <div className="blogs-container">
-
                         <div className="all-tags-container">
-                            {sliceData.map((blog) => (
-                                <div className="tags-wrapper" key={blog.id}>
-                                    <Tags blog={blog} setter={setSelectedBlogByTag} />
+                            {tags.map((tag) => (
+                                <div className="tags-wrapper" key={tag}>
+                                    <Tags tag={tag} setter={setSelectedBlogByTag} />
 
                                 </div>
                             ))}
                         </div>
                         <div className="blog-cards">
+
                             {sliceData.map((blog) => (
                                 <div className="blog-container" key={blog.id}>
                                     <BlogCard
                                         setter={setSelectedBlogId}
                                         blog={blog}
-
                                     />
+
                                 </div>
                             ))}
                         </div>

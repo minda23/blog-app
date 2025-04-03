@@ -6,7 +6,7 @@ const blogs = (props) => {
 
 
 
-    const { setter, setter1, blog } = props;
+    const { setter, blog } = props;
 
     return (
         <>
