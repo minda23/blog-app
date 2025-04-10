@@ -9,13 +9,12 @@ import Tags from "./Tags";
 import Loader from "./Loader";
 
 
-
-const app = () => {
+const App = () => {
     const [BlogData, setBlogData] = useState([]);
     const [selectedBlogId, setSelectedBlogId] = useState("");
     const [selectedTag, setSelectedBlogByTag] = useState("");
     const [page, setPage] = useState(0);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
 
     //- [ ]  ked sa klikne next gombik tak zobrazi ine blogy ako aktualne
     //  ked sa klikne na previous tak sa zobrazia predošle blogy
@@ -53,6 +52,46 @@ const app = () => {
         filteredBlogByTag = emptyTag1;
 
     }
+
+    // teraz filtrujem koľko mam kategorii v blog data 
+    // ale chcem že koľko člankov obsahuje jedna kategoria
+    // čiže mam objekt category a v nom moje tagy a hodnotu koľko ich je.
+    // Dobrý deň, no není to zlý nápad tak manuálne listovať tie kategórie, 
+    // táto časť môže byť 👍 Potom dalej (riadok 79+) 
+    // vám bude treba dvojitu funkciu: forEach aj filter.
+    //  Niejak musíte s tým forEachom prejsť cez všetky kategórie, a
+    // potom použiť ten filter aby ste každú spočítali.
+    //  Aktulani filter ktorý máte porovná element proti sebe, čo vlastne by nič nerobilo.
+    const categoryCounts = {
+        "Entertainment": 6,
+        "Food & Drink": 5,
+        "Fashion & Beauty": 4,
+        "Art & Culture": 3,
+        "Finance & Business": 3,
+        "Politics & Social Issues": 2,
+        "Technology": 2,
+        "Lifestyle": 3,
+        "Education": 1,
+        "Sports & Fitness": 2,
+        "Health & Wellness": 3,
+        "Travel & Leisure": 5,
+        "Programming & Development": 5,
+        "Environment & Sustainability": 3,
+        "Science & Space": 2,
+    };
+
+    const changecategory = Object.entries(categoryCounts).map((categoryArray) => {
+        const AllBlogsInThisCategory = BlogData.filter((item) => item.category === categoryArray[0])
+        const NumberOfBlogsInThisCategory = AllBlogsInThisCategory.length
+
+        return [NumberOfBlogsInThisCategory, categoryArray[0]] // to prve je dlžka a ten druhy parameter je nazov string napr. "food & drink"
+
+    }
+    )
+
+    console.log(changecategory)
+
+
 
     // no dobre máme vyfiltrovany blog ale kde ho chcem použiť 
     // teraz musim posielať ako prop cely blog v blogCard ako tam pošlem
@@ -126,47 +165,52 @@ const app = () => {
         return <Loader />
     }
 
-    return (
-        <div>
-            <Menu />
-            <div className="blog-section">
-                {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
-                {!selectedBlogId && (
-                    <div className="blogs-container">
-                        <div className="all-tags-container">
-                            {tags.map((tag) => (
-                                <div className="tags-wrapper" key={tag}>
-                                    <Tags tag={tag} setter={setSelectedBlogByTag} />
+    else {
+        return (
+            <div>
+                <Menu />
+                <div className="blog-section">
+                    {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
+                    {!selectedBlogId && (
+                        <div className="blogs-container">
+                            <div className="all-tags-container">
+                                {changecategory.map(([count, tag]) => (
+                                    <div className="tags-wrapper" key={tag}>
+                                        <Tags tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
 
-                                </div>
-                            ))}
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="blog-cards">
+
+                                {sliceData.map((blog) => (
+                                    <div className="blog-container" key={blog.id}>
+                                        <BlogCard
+                                            setter={setSelectedBlogId}
+                                            blog={blog}
+                                        />
+
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        <div className="blog-cards">
+                    )}
+                </div>
 
-                            {sliceData.map((blog) => (
-                                <div className="blog-container" key={blog.id}>
-                                    <BlogCard
-                                        setter={setSelectedBlogId}
-                                        blog={blog}
-                                    />
 
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                <div className="move-blog">
+                    <p onClick={() => { handlePrevious() }} className="previous">previous</p>
+                    <p className="numbers-pages">{page + 1} of {TotalPages}</p>
+                    <p onClick={() => { handleNext() }} className="next">next</p>
+                </div>
             </div>
+        );
 
 
-            <div className="move-blog">
-                <p onClick={() => { handlePrevious() }} className="previous">previous</p>
-                <p className="numbers-pages">{page + 1} of {TotalPages}</p>
-                <p onClick={() => { handleNext() }} className="next">next</p>
-            </div>
-        </div>
-    );
-
+    }
 }
 
 
-export default app
+
+
+export default App
