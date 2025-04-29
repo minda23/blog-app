@@ -167,41 +167,43 @@ const App = () => {
 
     else {
         return (
-            <div>
-                <Menu />
-                <div className="blog-section">
-                    {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
-                    {!selectedBlogId && (
-                        <div className="blogs-container">
-                            <div className="all-tags-container">
-                                {changecategory.map(([count, tag]) => (
-                                    <div className="tags-wrapper" key={tag}>
-                                        <Tags tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
+            <div className="container">
+                <div>
+                    <Menu />
+                    <div className="blog-section">
+                        {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
+                        {!selectedBlogId && (
+                            <div className="blogs-container">
+                                <div className="all-tags-container">
+                                    {changecategory.map(([count, tag]) => (
+                                        <div className="tags-wrapper" key={tag}>
+                                            <Tags tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
 
-                                    </div>
-                                ))}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="blog-cards">
+
+                                    {sliceData.map((blog) => (
+                                        <div className="blog-container" key={blog.id}>
+                                            <BlogCard
+                                                setter={setSelectedBlogId}
+                                                blog={blog}
+                                            />
+
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                            <div className="blog-cards">
-
-                                {sliceData.map((blog) => (
-                                    <div className="blog-container" key={blog.id}>
-                                        <BlogCard
-                                            setter={setSelectedBlogId}
-                                            blog={blog}
-                                        />
-
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
 
 
-                <div className="move-blog">
-                    <p onClick={() => { handlePrevious() }} className="previous">previous</p>
-                    <p className="numbers-pages">{page + 1} of {TotalPages}</p>
-                    <p onClick={() => { handleNext() }} className="next">next</p>
+                    <div className="move-blog">
+                        <p onClick={() => { handlePrevious() }} className="previous">previous</p>
+                        <p className="numbers-pages">{page + 1} of {TotalPages}</p>
+                        <p onClick={() => { handleNext() }} className="next">next</p>
+                    </div>
                 </div>
             </div>
         );

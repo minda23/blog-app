@@ -4,7 +4,6 @@ import Blogs from "./blogCard";
 import './menu.css';
 
 const app = () => {
-
     return (
         <div>
             <ul className="menu">

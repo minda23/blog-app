@@ -7,3 +7,14 @@
     align-items: center;
     height: 5rem;
 }
+
+.container-post {
+    margin-left: 1rem;
+}
+
+
+.all-posts {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
