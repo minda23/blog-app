@@ -1,20 +1,27 @@
 .all-posts {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* Default to row on larger screens */
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 2rem;
     align-items: center;
-    height: 5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    height: auto;
+    /* Removed fixed height for better responsiveness */
 }
 
 .container-post {
     margin-left: 1rem;
 }
 
-
-.all-posts {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+@media (max-width: 480px) {
+    .all-posts {
+        flex-direction: column;
+        gap: 0.5rem;
+        /* Add some gap for mobile layout */
+        align-items: stretch;
+        /* Stretch items to full width */
+    }
 }
