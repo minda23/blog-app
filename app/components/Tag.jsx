@@ -1,10 +1,9 @@
 'use client';
 
 import React from 'react';
-import './Tags.css';
+import './Tag.css';
 
-const Tags = (props) => {
-
+const Tag = (props) => {
     const { tag, setter, blogCount } = props;
 
     return (
@@ -21,4 +20,4 @@ const Tags = (props) => {
     );
 };
 
-export default Tags
+export default Tag

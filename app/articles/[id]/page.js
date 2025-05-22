@@ -1,6 +1,6 @@
 import BlogPost from "@/app/components/blogPost";
 import Menu from "@/app/components/menu"
-import Tags from "@/app/components/Tags"
+import Tags from "@/app/components/Tag"
 import styles from './page.module.css'
 
 

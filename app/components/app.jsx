@@ -5,7 +5,7 @@ import BlogPost from "./blogPost";
 import Menu from "./menu";
 import moment from "moment";
 import './app.css';
-import Tags from "./Tags";
+import Tag from "./Tag";
 import Loader from "./Loader";
 import Link from 'next/link'
 
@@ -152,7 +152,7 @@ const App = () => {
                                 <div className="all-tags-container">
                                     {changecategory.map(([count, tag]) => (
                                         <div className="tags-wrapper" key={tag}>
-                                            <Tags tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
+                                            <Tag tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
 
                                         </div>
                                     ))}
