@@ -1,6 +1,11 @@
 .post p {
+    display: flex;
+    align-self: c;
     font-size: 1.2rem;
     letter-spacing: 0.3rem;
     font-weight: bold;
-    max-width: 56rem;
+    max-width: 35rem;
+    position: absolute;
+    top: 20rem;
+    right: 5rem;
 }

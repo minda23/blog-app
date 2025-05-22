@@ -7,6 +7,7 @@ import moment from "moment";
 import './app.css';
 import Tags from "./Tags";
 import Loader from "./Loader";
+import Link from 'next/link'
 
 
 const App = () => {
@@ -89,15 +90,6 @@ const App = () => {
     }
     )
 
-    console.log(changecategory)
-
-
-
-    // no dobre máme vyfiltrovany blog ale kde ho chcem použiť 
-    // teraz musim posielať ako prop cely blog v blogCard ako tam pošlem
-    // ten vyfiltrovany blog
-
-
     BlogData.sort((a, b) => {
         if (a.created_at > b.created_at) {
             return 1;
@@ -106,31 +98,14 @@ const App = () => {
         }
         return 0;
     })
-
+    // dynamicky komponent
     useEffect(() => {
         setIsLoading(true);
-        fetch("https://jsonfakery.com/blogs")
+        fetch("http://localhost:1337/api/articles")
             .then(response => response.json())
             .then(data => {
-                // 1. chceme ukázať 10 blogov. blog[0] a blog[9]
-                // 2. blog[10] blog[19].
-                // 3. blog[20] blog[29].
-                // 4. start = page * 10.
 
-                // ako by sme mohli isť na druhu stránku ale nezavolať ten fetch
-                // potrebujeme vedieť ktore blogy už vidime z fetchu ako sa načitala stránka.
-                // Mohli by sme ukázať len časť blog dát 
-                // Mohli by sme si vytvoriť novu premennu , ktorá by mala len tie slicenute data.
-                // 
-
-                // end of page :  1. 9,19,29,39,49,59
-                // end =  (page + 1) * 10 = 10
-                // second (page + 1) * 10 = 11
-                // third  (page + 1) * 10 = 12
-
-
-
-                const convertedData = data.map((item) => ({
+                const convertedData = data.data.map((item) => ({
                     ...item,
                     created_at: moment(item.created_at, "-----MM-DD-YYYY"),
                 }))
@@ -205,6 +180,7 @@ const App = () => {
                         <p onClick={() => { handleNext() }} className="next">next</p>
                     </div>
                 </div>
+
             </div>
         );
 

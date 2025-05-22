@@ -4,16 +4,13 @@ import './blogPost.css';
 const blogPost = (props) => {
     const { blog } = props;
 
-
     return (
         <>
-            (
+
             <div className="post">
-                <p>{blog.main_content}</p>
+                <p>{blog.description}</p>
             </div>
 
-
-            )
         </>
 
     );

@@ -1,7 +1,6 @@
 .all-posts {
     display: flex;
     flex-direction: row;
-    /* Default to row on larger screens */
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 2rem;
@@ -9,7 +8,6 @@
     flex-wrap: wrap;
     gap: 1rem;
     height: auto;
-    /* Removed fixed height for better responsiveness */
 }
 
 .container-post {

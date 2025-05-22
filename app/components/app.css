@@ -5,10 +5,11 @@ body {
 .blogs-container {
     display: flex;
     flex-direction: row;
+    gap: 7rem;
 }
 
 .blogs {
-    flex: 3;
+    flex: 2;
 }
 
 
@@ -20,13 +21,14 @@ body {
     background-color: rgb(30, 30, 60);
     border-radius: 2rem;
     align-content: center;
+    min-width: 15rem;
     margin-top: 1rem;
     padding: 3rem;
     padding-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 135rem;
+    margin-left: 7rem;
 }
 
 
