@@ -1,7 +1,7 @@
 import BlogPost from "@/app/components/blogPost";
 import Menu from "@/app/components/menu"
 import Tags from "@/app/components/Tag"
-import styles from './page.module.css'
+import './page.css'
 
 
 
@@ -22,12 +22,12 @@ const page = async (props) => {
     return (
         <>
 
-            <div className={styles.menuWrapper}>
+            <div className={"menu-wrapper"}>
 
 
                 <Menu />
             </div>
-            <div className={styles.articlePost}>
+            <div className={"article-post"}>
 
                 <div>
                     <BlogPost blog={article.data} />

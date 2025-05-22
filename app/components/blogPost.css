@@ -1,3 +1,7 @@
+body {
+    background-color: #030712;
+}
+
 .post p {
     display: flex;
     align-self: c;
@@ -8,4 +12,5 @@
     position: absolute;
     top: 20rem;
     right: 5rem;
+    color: white;
 }
