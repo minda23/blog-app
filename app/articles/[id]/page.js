@@ -1,6 +1,6 @@
 import BlogPost from "@/app/components/blogPost";
-import Menu from "@/app/components/menu"
-import Tag from "@/app/components/Tag"
+import Header from "@/app/components/header"
+
 import './page.css'
 
 // SSR komponent server side rendering
@@ -11,18 +11,9 @@ const page = async (props) => {
 
     return (
         <>
-            <div className={"menu-wrapper"}>
-                <Menu />
-            </div>
-
-            <div>
+            <Header>
                 <BlogPost blog={article.data} />
-            </div>
-
-            <div>
-                <Tag />
-            </div>
-
+            </Header>
         </>
     )
 }

@@ -1,17 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import Header from "@/app/components/header"
-import BlogCard from "./blogCard";
-import BlogPost from "./blogPost";
-import Menu from "./menu";
-import moment from "moment";
-import './app.css';
-import Tag from "./Tag";
 import Loader from "./Loader";
-import Link from 'next/link'
+import Menu from "@/app/components/menu";
+import Tag from "@/app/components/Tag";
 
-
-const App = () => {
+const header = (props) => {
+    const { children } = props;
     const [BlogData, setBlogData] = useState([]);
     const [selectedBlogId, setSelectedBlogId] = useState("");
     const [selectedTag, setSelectedBlogByTag] = useState("");
@@ -143,27 +137,46 @@ const App = () => {
 
     else {
         return (
-            <Header>
-                <div className="blog-cards">
+            <div className="container">
+                <div>
+                    <Menu />
+                    <div className="blog-section">
+                        {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
+                        {!selectedBlogId && (
+                            <div className="blogs-container">
+                                <div className="all-tags-container">
+                                    {changecategory.map(([count, tag]) => (
+                                        <div className="tags-wrapper" key={tag}>
+                                            <Tag tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
 
-                    {sliceData.map((blog) => (
-                        <div className="blog-container" key={blog.id}>
-                            <BlogCard
-                                setter={setSelectedBlogId}
-                                blog={blog}
-                            />
-                        </div>
-                    ))}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="blog-cards">
+                                    {children}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+
+                    <div className="move-blog">
+                        <p onClick={() => { handlePrevious() }} className="previous">previous</p>
+                        <p className="numbers-pages">{page + 1} of {TotalPages}</p>
+                        <p onClick={() => { handleNext() }} className="next">next</p>
+                    </div>
                 </div>
-            </Header>
 
+            </div>
         );
 
 
     }
+
+
+
+
+
 }
 
-
-
-
-export default App
+export default header;
