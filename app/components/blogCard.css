@@ -19,6 +19,10 @@ body {
     overflow: hidden;
 }
 
+.blogcard-link {
+    text-decoration: none;
+}
+
 .img-blog {
     width: 100%;
     max-width: 30rem;

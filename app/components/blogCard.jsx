@@ -12,7 +12,7 @@ const blogs = (props) => {
                 <div>
 
                     <p>{blog.id}</p>
-                    <Link href={"/articles/" + blog.documentId}>
+                    <Link className="blogcard-link" href={"/articles/" + blog.documentId}>
                         <p className="title-blog">{blog.title}</p>
                     </Link>
 

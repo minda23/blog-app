@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import Loader from "./Loader";
+import moment from "moment";
 import Menu from "@/app/components/menu";
 import Tag from "@/app/components/Tag";
+import './app.css';
 
 const header = (props) => {
     const { children } = props;

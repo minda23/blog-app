@@ -11,7 +11,7 @@ const blogPost = (props) => {
                 <p>{blog.description}</p>
             </div>
             <div className={"article-post"}>
-                {blog.Body.map((BodyPart) => (
+                {!!blog.Body && blog.Body.map((BodyPart) => ( // ked blog body je vybraty tak vtedy sa zobrazi
 
                     BodyPart.children.map((child, key) => (
                         <div key={key}>
