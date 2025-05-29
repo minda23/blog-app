@@ -10,6 +10,7 @@ const blogs = (props) => {
         <>
             <div className="blog-info">
                 <div>
+
                     <p>{blog.id}</p>
                     <Link href={"/articles/" + blog.documentId}>
                         <p className="title-blog">{blog.title}</p>
