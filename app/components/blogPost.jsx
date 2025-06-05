@@ -7,7 +7,6 @@ import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 const blogPost = (props) => {
     const { blog } = props;
 
-
     return (
         <>
             <div className="post">

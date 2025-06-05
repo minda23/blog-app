@@ -19,7 +19,7 @@ const app = (props) => {
                 </Link>
 
                 <li>About</li>
-                <img className="search-btn" src="./img/icons8-search.svg" alt="Search Icon" width="37" height="37" />
+                <img className="search-btn" src="/img/icons8-search.svg" alt="Search Icon" width="37" height="37" />
             </ul>
             <div>
             </div>
