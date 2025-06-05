@@ -9,6 +9,8 @@ import './app.css';
 import Tag from "./Tag";
 import Loader from "./Loader";
 import Link from 'next/link'
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
+    const textWithNameCode = BlogData.filter((element) => element.code === true);
     //- [ ]  ked sa klikne next gombik tak zobrazi ine blogy ako aktualne
     //  ked sa klikne na previous tak sa zobrazia predošle blogy
     //  mali by sme state kde by sme mali premennu a funkciu ktora by menila tie strany že ideme z jednej na dalšiu kde su ine blogy
@@ -65,21 +68,8 @@ const App = () => {
     // potom použiť ten filter aby ste každú spočítali.
     //  Aktulani filter ktorý máte porovná element proti sebe, čo vlastne by nič nerobilo.
     const categoryCounts = {
-        "Entertainment": 6,
-        "Food & Drink": 5,
-        "Fashion & Beauty": 4,
-        "Art & Culture": 3,
-        "Finance & Business": 3,
-        "Politics & Social Issues": 2,
-        "Technology": 2,
-        "Lifestyle": 3,
-        "Education": 1,
-        "Sports & Fitness": 2,
-        "Health & Wellness": 3,
-        "Travel & Leisure": 5,
-        "Programming & Development": 5,
-        "Environment & Sustainability": 3,
-        "Science & Space": 2,
+        "React": 0,
+        "Vanilla js": 0,
     };
 
     const changecategory = Object.entries(categoryCounts).map((categoryArray) => {
@@ -152,9 +142,12 @@ const App = () => {
                                 setter={setSelectedBlogId}
                                 blog={blog}
                             />
+
                         </div>
+
                     ))}
                 </div>
+
             </Header>
 
         );

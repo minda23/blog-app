@@ -5,14 +5,31 @@ body {
 .post {
     display: flex;
     justify-content: center;
-    font-size: 1.4rem;
+    font-size: 1rem;
     letter-spacing: 0.3rem;
     font-weight: bold;
     color: white;
+    overflow-wrap: break-word;
 }
 
 .post p {
     width: 40rem;
+}
+
+.article-post {
+    max-width: 100%;
+    word-wrap: break-word;
+    /* zalomí dlhé slová */
+    overflow-wrap: break-word;
+    padding: 1rem;
+}
+
+.body-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: white;
+    /* zachová medzery aj nové riadky */
 }
 
 .post-text {

@@ -8,9 +8,8 @@ body {
 .blogs-container {
     display: flex;
     flex-direction: row;
-    gap: 12rem;
+    gap: 1rem;
     padding: 1rem;
-    padding-left: 6rem;
     justify-content: left;
     max-width: 100rem;
 }
@@ -40,6 +39,7 @@ body {
     align-items: flex-start;
     margin-left: 2rem;
     margin-right: 2rem;
+    max-height: 20rem;
     box-sizing: border-box;
     /* ensures padding doesn't cause overflow */
 }
