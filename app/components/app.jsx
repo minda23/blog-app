@@ -13,7 +13,9 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 
+
 const App = () => {
+
     const [BlogData, setBlogData] = useState([]);
     const [selectedBlogId, setSelectedBlogId] = useState("");
     const [selectedTag, setSelectedBlogByTag] = useState("");
