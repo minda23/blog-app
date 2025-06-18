@@ -18,8 +18,6 @@
     .all-posts {
         flex-direction: column;
         gap: 0.5rem;
-        /* Add some gap for mobile layout */
         align-items: stretch;
-        /* Stretch items to full width */
     }
 }

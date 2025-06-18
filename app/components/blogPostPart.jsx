@@ -5,9 +5,6 @@ import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 const blogPostPart = (props) => {
     const { blogPart } = props;
 
-    // const [isLoading, _] = useState();
-    // if (isLoading) return <div>Loading...</div>
-
     if (blogPart.code === true) {
         return (
             <SyntaxHighlighter

@@ -10,7 +10,7 @@ export const generateStaticParams = async () => {
     const res = await fetch("http://localhost:1337/api/articles");
     const json = await res.json();
 
-    return json.data.map((article) => ({ id: article.documentId })); // example: [{id: "23"}, {id: "232"}, {id: "23145"}]
+    return json.data.map((article) => ({ id: article.documentId }));
 };
 // SSR komponent server side rendering
 const page = async (props) => {
