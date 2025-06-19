@@ -8,7 +8,7 @@ const blogPost = (props) => {
 
     return (
         <>
-            <div className="post">
+            <div className="heading">
                 <p>{blog.description}</p>
             </div>
             <div className="article-post">

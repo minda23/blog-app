@@ -12,12 +12,14 @@ body {
     overflow-wrap: break-word;
 }
 
-.post p {
-    width: 40rem;
+.heading p {
+    font-size: 2rem;
+    position: relative;
+    left: 1rem;
 }
 
 .article-post {
-    max-width: 100%;
+    max-width: 50rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
     padding: 1rem;
