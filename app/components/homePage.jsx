@@ -2,15 +2,9 @@
 import { useState, useEffect } from "react";
 import Header from "@/app/components/header"
 import BlogCard from "./blogCard";
-import BlogPost from "./blogPost";
-import Menu from "./menu";
-import moment from "moment";
 import './app.css';
-import Tag from "./Tag";
 import Loader from "./Loader";
-import Link from 'next/link'
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 
 
 
