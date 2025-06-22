@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Loader from "./Loader";
 import Menu from "@/app/components/menu";
 import Tag from "@/app/components/Tag";
-import BlogPost from "@/app/components/blogPost";
+import BlogPost from "@/app/components/BlogPost";
 import './app.css';
 
 const HeaderPage = (props) => {

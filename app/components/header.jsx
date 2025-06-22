@@ -2,7 +2,7 @@ import HeaderPage from "./headerPage";
 import moment from "moment";
 import './app.css';
 
-const Header = async () => {
+const Header = async ({ children }) => {
     const results = await fetch("http://localhost:1337/api/articles")
     const articles = await results.json()
     const convertedData = articles.data.map((item) => ({
@@ -13,9 +13,10 @@ const Header = async () => {
     console.log(blogData)
     return (
         <div>
-            <HeaderPage data={blogData} />
+            <HeaderPage data={blogData} children={children} />
         </div>
+
     );
 };
 
-export default Header;
+export default Header; 
