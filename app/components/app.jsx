@@ -4,6 +4,7 @@ import './app.css';
 
 
 
+
 const App = async () => {
     const results = await fetch("http://localhost:1337/api/articles")
     const articles = await results.json()
@@ -16,6 +17,7 @@ const App = async () => {
 
     return (
         <HomePage blogData={blogData} />
+
     )
 
 

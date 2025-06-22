@@ -1,4 +1,4 @@
-
+"use client"
 import { useState } from "react";
 import Loader from "./Loader";
 import Menu from "@/app/components/menu";

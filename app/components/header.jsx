@@ -1,8 +1,5 @@
-import { useState, useEffect } from "react";
 import HeaderPage from "./headerPage";
 import moment from "moment";
-import Menu from "@/app/components/menu";
-import Tag from "@/app/components/Tag";
 import './app.css';
 
 const Header = async () => {
