@@ -5,6 +5,8 @@ import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 const blogPostPart = (props) => {
     const { blogPart } = props;
 
+    const changeImages = blogPart.filter((image) => image === cover.caption)
+
     if (blogPart.code === true) {
         return (
             <SyntaxHighlighter
@@ -34,6 +36,7 @@ const blogPostPart = (props) => {
     return (
         <div className="body-text">
             <p>{blogPart.text}</p>
+            <img>{changeImages}</img>
         </div >
     );
 }
