@@ -1,4 +1,3 @@
-
 import App from './components/app.jsx';
 import './page.css';
 
@@ -6,7 +5,7 @@ import './page.css';
 
 
 
-export default function Home() {
+export default async function Home() {
 
 
 

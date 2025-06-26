@@ -1,11 +1,10 @@
 import moment from "moment";
+import Header from "./header";
 import HomePage from "./homePage";
 import './app.css';
 
-
-
-
 const App = async () => {
+
     const results = await fetch("http://localhost:1337/api/articles")
     const articles = await results.json()
     const convertedData = articles.data.map((item) => ({
@@ -16,7 +15,10 @@ const App = async () => {
     console.log(blogData)
 
     return (
-        <HomePage blogData={blogData} />
+        <Header>
+            <HomePage blogData={blogData} />
+        </Header>
+
 
     )
 

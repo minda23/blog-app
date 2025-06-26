@@ -6,8 +6,6 @@ import './app.css';
 import Loader from "./Loader";
 
 
-
-
 const homePage = (props) => {
     const { blogData } = props;
     const [selectedBlogId, setSelectedBlogId] = useState("");
@@ -73,22 +71,22 @@ const homePage = (props) => {
 
     else {
         return (
-            <Header>
-                <div className="blog-cards">
 
-                    {sliceData.map((blog) => (
-                        <div className="blog-container" key={blog.id}>
-                            <BlogCard
-                                setter={setSelectedBlogId}
-                                blog={blog}
-                            />
+            <div className="blog-cards">
 
-                        </div>
+                {sliceData.map((blog) => (
+                    <div className="blog-container" key={blog.id}>
+                        <BlogCard
+                            setter={setSelectedBlogId}
+                            blog={blog}
+                        />
 
-                    ))}
-                </div>
+                    </div>
 
-            </Header>
+                ))}
+            </div>
+
+
 
         );
 
