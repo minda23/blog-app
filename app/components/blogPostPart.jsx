@@ -5,7 +5,7 @@ import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 const blogPostPart = (props) => {
     const { blogPart } = props;
 
-    const changeImages = blogPart.filter((image) => image === cover.caption)
+
 
     if (blogPart.code === true) {
         return (
@@ -18,7 +18,23 @@ const blogPostPart = (props) => {
         )
     }
 
-    console.log(blogPart.children);
+    if (blogPart.url !== undefined) {
+        return (
+            <div>
+                <img className="img-blog" src={"./img/" + blogPart.url} alt="Blog" width="200" height="200"></img>
+
+            </div>
+        )
+    }
+
+    if (blogPart.url !== undefined) {
+        return (
+            <div>
+                <img className="img-blog" src={"./img/" + blogPart.text} alt="Blog" width="200" height="200"></img>
+
+            </div>
+        )
+    }
 
     if (blogPart.children !== undefined) {
         return (
@@ -27,17 +43,21 @@ const blogPostPart = (props) => {
                     <ul key={key}>
                         <li>{child.text}</li>
                     </ul>
+
                 ))}
+
             </div>
         )
     }
 
 
     return (
-        <div className="body-text">
-            <p>{blogPart.text}</p>
-            <img>{changeImages}</img>
-        </div >
+        <>
+            <div className="body-text">
+                <p>{blogPart.text}</p>
+
+            </div>
+        </>
     );
 }
 

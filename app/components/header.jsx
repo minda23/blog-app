@@ -15,7 +15,6 @@ const Header = async ({ children }) => {
         <div>
             <HeaderPage data={blogData} children={children} />
         </div>
-
     );
 };
 

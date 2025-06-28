@@ -16,6 +16,7 @@ const blogPost = (props) => {
                     <div key={index}>
                         {BodyPart.children.map((child, key) => (
                             <BlogPostPart blogPart={child} key={key} />
+
                         ))}
                     </div>
                 ))}

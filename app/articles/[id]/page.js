@@ -21,6 +21,7 @@ const page = async (props) => {
         <>
             <Header>
                 <BlogPost blog={article.data} />
+
             </Header>
         </>
     )
