@@ -21,7 +21,7 @@ const page = async (props) => {
         <>
             <Header>
                 <BlogPost blog={article.data} />
-
+                <p>{blog.dataofpublishing}</p>
             </Header>
         </>
     )
