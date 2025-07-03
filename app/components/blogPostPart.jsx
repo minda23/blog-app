@@ -22,7 +22,6 @@ const blogPostPart = (props) => {
         return (
             <div>
                 <img className="img-blog" src={"./img/" + blogPart.url} alt="Blog" width="200" height="200"></img>
-
             </div>
         )
     }
