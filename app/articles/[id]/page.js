@@ -7,7 +7,7 @@ import './page.css'
 // generateStaticParams sa použiva na staticke generovanie obsahu.
 
 export const generateStaticParams = async () => {
-    const res = await fetch("http://localhost:1337/api/articles");
+    const res = await fetch("http://localhost:1337/api/articles", { next: { revalidate: 100 } });
     const json = await res.json();
 
     return json.data.map((article) => ({ id: article.documentId }));
@@ -15,7 +15,7 @@ export const generateStaticParams = async () => {
 // SSR komponent server side rendering
 const page = async (props) => {
     const awaitedParams = await props.params
-    const results = await fetch("http://localhost:1337/api/articles/" + awaitedParams.id)
+    const results = await fetch("http://localhost:1337/api/articles/" + awaitedParams.id, { next: { revalidate: 100 } })
     const article = await results.json()
     return (
         <>

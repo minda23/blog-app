@@ -18,19 +18,10 @@ const blogPostPart = (props) => {
         )
     }
 
-    if (blogPart.url !== undefined) {
+    if (blogPart.text !== undefined && blogPart.text.endsWith(".png")) {
         return (
             <div>
-                <img className="img-blog" src={"./img/" + blogPart.url} alt="Blog" width="200" height="200"></img>
-            </div>
-        )
-    }
-
-    if (blogPart.url !== undefined) {
-        return (
-            <div>
-                <img className="img-blog" src={"./img/" + blogPart.text} alt="Blog" width="200" height="200"></img>
-
+                <img className="img-blog" src={"/img/" + blogPart.text} alt="Blog" width="200" height="200"></img>
             </div>
         )
     }

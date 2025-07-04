@@ -1,0 +1,1 @@
+import BlogCard from "../blogCard";
