@@ -7,6 +7,7 @@ import BlogPost from "@/app/components/blogPost";
 import './app.css';
 
 const HeaderPage = (props) => {
+
     const { children, data } = props;
     const [selectedBlogId, setSelectedBlogId] = useState("");
     const [selectedTag, setSelectedBlogByTag] = useState("");
