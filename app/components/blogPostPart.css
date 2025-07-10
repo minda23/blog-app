@@ -2,3 +2,10 @@
     font-size: 1.8rem;
 
 }
+
+.img-blog {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    border-radius: 0.5rem;
+}
