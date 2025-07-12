@@ -3,7 +3,8 @@ import { useState } from "react";
 import Loader from "./Loader";
 import Menu from "@/app/components/menu";
 import Tag from "@/app/components/Tag";
-import BlogPost from "@/app/components/blogPost";
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 import './app.css';
 
 const HeaderPage = (props) => {
@@ -14,16 +15,8 @@ const HeaderPage = (props) => {
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    let emptyBlog = {};
-    if (selectedBlogId !== "") {
-        const blogfull = data.find((element) => element.id === selectedBlogId);
-        emptyBlog = blogfull;
-    }
 
     let filteredBlogByTag = data;
-    if (selectedTag !== "") {
-        filteredBlogByTag = data.filter((element) => element.Category2 === selectedTag);
-    }
 
     const categoryCounts = {
         "React": 0,
@@ -36,8 +29,12 @@ const HeaderPage = (props) => {
         return [count, categoryName];
     });
 
-    // bezpečne sortujeme podľa ISO string dátumu
     filteredBlogByTag.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+
+    if (selectedTag !== "") {
+        filteredBlogByTag = data.filter((element) => element.categoryCounts === selectedTag);
+    }
 
     const start = page * 10;
     const end = (page + 1) * 10;
@@ -55,13 +52,31 @@ const HeaderPage = (props) => {
         <div className="container">
             <Menu />
             <div className="blog-section">
-                {!!selectedBlogId && <BlogPost blog={emptyBlog} />}
+
                 {!selectedBlogId && (
                     <div className="blogs-container">
                         <div className="all-tags-container">
+                            <IconButton
+                                className="btn tag-close-icon"
+                                aria-label="close"
+                                sx={{
+                                    position: "relative",
+                                    left: "10rem",
+                                    top: "1rem",
+                                    backgroundColor: "#f5f5f5",
+                                    color: "#333",
+                                    "&:hover": {
+                                        backgroundColor: "#e0e0e0",
+                                    },
+                                    zIndex: 2,
+                                }}
+                            >
+                                <CloseIcon />
+                            </IconButton>
                             {changecategory.map(([count, tag]) => (
                                 <div className="tags-wrapper" key={tag}>
                                     <Tag tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
+
                                 </div>
                             ))}
                         </div>

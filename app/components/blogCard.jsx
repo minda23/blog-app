@@ -5,7 +5,7 @@ import './blogCard.css';
 const blogs = (props) => {
 
 
-    const { setter, blog } = props;
+    const { setter, blog, } = props;
 
 
     return (
@@ -13,7 +13,6 @@ const blogs = (props) => {
             <div className="blog-info">
                 <div>
                     <p>{blog.dataofpublishing}</p>
-                    <p>{blog.id}</p>
                     <Link className="blogcard-link" href={"/articles/" + blog.documentId}>
                         <p className="title-blog">{blog.title}</p>
                         <img className="img-blog" src={"./img/" + blog.Thumbnail} alt="Blog" width="200" height="200"></img>

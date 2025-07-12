@@ -48,15 +48,6 @@ const homePage = (props) => {
 
     }
     )
-
-    blogData.sort((a, b) => {
-        if (a.created_at > b.created_at) {
-            return 1;
-        } else if (a.created_at < b.created_at) {
-            return -1;
-        }
-        return 0;
-    })
     const start = page * 10;
     const end = (page + 1) * 10;
     const sliceData = filteredBlogByTag.slice(start, end);

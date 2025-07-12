@@ -6,18 +6,22 @@ import './app.css';
 
 const App = async () => {
 
+
+
     const results = await fetch("http://localhost:1337/api/articles", { next: { revalidate: 100 } }) // 100ms = 0.1s
     const articles = await results.json()
     const convertedData = articles.data.map((item) => ({
         ...item,
-        created_at: moment(item.created_at, "-----MM-DD-YYYY").toISOString(),
+        momentDate: new Date(item.dataofpublishing),
     }))
     const blogData = convertedData
     console.log(blogData)
 
+    const sortBlogPost = blogData.sort((a, b) => b.momentDate - a.momentDate);
+
     return (
         <Header>
-            <HomePage blogData={blogData} />
+            <HomePage blogData={sortBlogPost} />
         </Header>
 
 
