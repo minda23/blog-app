@@ -13,6 +13,7 @@ const homePage = (props) => {
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
+
     function handleNext() {
         setPage(page + 1)
     }
