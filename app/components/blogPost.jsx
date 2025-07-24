@@ -6,10 +6,6 @@ import BlogPostPart from "./blogPostPart";
 const blogPost = (props) => {
     const { blog } = props;
 
-    const a = "Hello"; // string
-    const b = "World"; // string
-    const c = a == b; // boolean (true or false)
-    // c = napriklad: 
 
     return (
         <>
@@ -20,7 +16,9 @@ const blogPost = (props) => {
                 {!!blog.Body && blog.Body.map((BodyPart, index) => (
                     <div key={index}>
                         {BodyPart.children.map((child, key) => (
+
                             <BlogPostPart blogPart={child} key={key} isHeading={BodyPart.type === 'heading'} />
+
 
                         ))}
                     </div>

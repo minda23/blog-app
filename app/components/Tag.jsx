@@ -11,10 +11,7 @@ const Tag = (props) => {
             <div className="all-posts">
                 <div>
                     <p
-                        onClick={() => {
-                            setter(tag);
-                            setShow(true);
-                        }}
+                        
                     >
                         {tag}
                     </p>

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, createContext } from "react";
 import Loader from "./Loader";
 import Menu from "@/app/components/menu";
 import Tag from "@/app/components/Tag";
@@ -7,8 +7,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
 import './app.css';
 
-const HeaderPage = (props) => {
+export const HeaderContext = createContext("React");
 
+const HeaderPage = (props) => {
 
     const { children, data } = props;
     const [selectedBlogId, setSelectedBlogId] = useState("");
@@ -23,10 +24,10 @@ const HeaderPage = (props) => {
     const Tag = ({ onClick, tag }) => (
         <p className="tag-btn" onClick={onClick}>{tag}</p>
     );
-
+           
     const categoryCounts = {
         "React": 0,
-        "Vanilla js": 0,
+        "Vanilla Js": 0,
     };
 
     const changecategory = Object.entries(categoryCounts).map(([categoryName]) => {
@@ -39,9 +40,10 @@ const HeaderPage = (props) => {
 
 
     if (selectedTag !== "") {
-        filteredBlogByTag = data.filter((element) => element.Category2 === categoryCounts);
+        filteredBlogByTag = data.filter((element) => element.Category2 === selectedTag);
     }
-
+    
+    
     const start = page * 10;
     const end = (page + 1) * 10;
     const sliceData = filteredBlogByTag.slice(start, end);
@@ -54,48 +56,61 @@ const HeaderPage = (props) => {
         return <Loader />;
     }
 
+
     return (
-        <div className="container">
-            <Menu />
-            <div className="blog-section">
+    <HeaderContext value={selectedTag}>
+       <div className="container">
+        <Menu />
+        <div className="blog-section">
 
-                {!selectedBlogId && (
-                    <div className="blogs-container">
-                        <div className="all-tags-container">
-                            {show &&
-                                <IconButton
-                                    className="btn tag-close-icon"
-                                    aria-label="close"
-                                    sx={{
-                                        position: "relative",
-                                        left: "15rem",
-                                        top: "1rem",
-                                        backgroundColor: "#f5f5f5",
-                                        color: "#333",
-                                        "&:hover": {
-                                            backgroundColor: "#e0e0e0",
-                                        },
-                                        zIndex: 2,
+            {!selectedBlogId && (
+                <div className="blogs-container">
+                    <div className="all-tags-container">
+                        {changecategory.map(([count, tag]) => (
+                            <div className="tags-wrapper" key={tag}>
+                                <Tag
+                                    onClick={() => {
+                                        setSelectedBlogByTag(tag);
+                                        setShow(true);
                                     }}
-                                >
-                                    <CloseIcon />
-                                </IconButton>
-                            }
-                            {changecategory.map(([count, tag]) => (
-                                <div className="tags-wrapper" key={tag}>
-                                    <Tag onClick={() => setShow(!show)} tag={tag} blogCount={count} setter={setSelectedBlogByTag} />
+                                    tag={tag}
+                                    blogCount={count}
+                                />
+                            </div>
+                        ))}
 
-                                </div>
-                            ))}
-                        </div>
-                        <div>
-                            {children}
-                        </div>
+                        {show &&
+                            <IconButton
+                                onClick={() => {
+                                    setShow(false);
+                                    setSelectedBlogByTag("");
+                                }} // zavrie ikonku
+                                className="btn tag-close-icon"
+                                aria-label="close"
+                                sx={{
+                                    position: "relative",
+                                    left: "15rem",
+                                    top: "1rem",
+                                    backgroundColor: "#f5f5f5",
+                                    color: "#333",
+                                    "&:hover": {
+                                        backgroundColor: "#e0e0e0",
+                                    },
+                                    zIndex: 2,
+                                }}
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                        }
                     </div>
-                )}
-            </div>
+                    <div>
+                        {children}
+                    </div>
+                </div>
+            )}
         </div>
-    );
-};
-
-export default HeaderPage;
+    </div>
+    </HeaderContext>
+    )
+}
+export default HeaderPage

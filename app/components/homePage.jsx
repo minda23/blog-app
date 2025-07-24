@@ -1,18 +1,18 @@
 "use client"
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import Header from "@/app/components/header"
 import BlogCard from "./blogCard";
 import './app.css';
 import Loader from "./Loader";
-
+import {HeaderContext} from "./headerPage"
 
 const homePage = (props) => {
-    const { blogData } = props;
-    const [selectedBlogId, setSelectedBlogId] = useState("");
-    const [selectedTag, setSelectedBlogByTag] = useState("");
+    const { blogData,setter } = props;
+    const [selectedBlogId, setSelectedBlogId] = useState("")
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
-
+    
+      const selectedPostByTag = useContext(HeaderContext);
 
     function handleNext() {
         setPage(page + 1)
@@ -30,8 +30,10 @@ const homePage = (props) => {
     }
 
     let filteredBlogByTag = blogData;
-    if (selectedTag !== "") {
-        let emptyTag1 = blogData.filter((element) => element.category === selectedTag)
+    console.log(selectedPostByTag, selectedPostByTag !== "")
+    if (selectedPostByTag !== "") {
+        console.log("filter")
+        let emptyTag1 = blogData.filter((element) => element.Category2 === selectedPostByTag)
         filteredBlogByTag = emptyTag1;
 
     }
@@ -57,6 +59,11 @@ const homePage = (props) => {
     const mySet1 = new Set();
     blogData.forEach((blog) => mySet1.add(blog.category))
     const tags = Array.from(mySet1);
+
+
+    console.log(selectedPostByTag)
+    console.log(sliceData)
+
     if (isLoading) {
         return <Loader />
     }
@@ -77,16 +84,8 @@ const homePage = (props) => {
 
                 ))}
             </div>
-
-
-
-        );
-
-
+         );
     }
 }
-
-
-
 
 export default homePage

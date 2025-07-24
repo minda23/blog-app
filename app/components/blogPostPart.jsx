@@ -3,9 +3,8 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { a11yDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import './blogPostPart.css'
 
-
-const BlogPostPart = ({ blogPart, isHeading }) => {
-
+const BlogPostPart = (props) => {
+    const { blogPart, isHeading } = props;
 
     if (blogPart.code === true) {
         return (
@@ -22,7 +21,6 @@ const BlogPostPart = ({ blogPart, isHeading }) => {
             </SyntaxHighlighter>
         );
     }
-
     if (isHeading === true) {
         return (
             <h2 className="heading-text">
@@ -30,16 +28,13 @@ const BlogPostPart = ({ blogPart, isHeading }) => {
             </h2>
         );
     }
-
-
-    if (blogPart.text && blogPart.text.endsWith(".png")) {
+     if (blogPart.text && blogPart.text.endsWith(".png")) {
         return (
             <div>
                 <img className="img-blog" src={`/img/${blogPart.text}`} alt="Blog" width="200" height="200" />
             </div>
         );
     }
-
     // Render list of children (ul > li)
     if (Array.isArray(blogPart.children)) {
         return (
@@ -50,14 +45,15 @@ const BlogPostPart = ({ blogPart, isHeading }) => {
             </ul>
         );
     }
-
-
-
     return (
-        <div className="body-text">
-            <p>{blogPart.text}</p>
-        </div>
-    );
+        <>
+            <div className="body-text">
+                <p>{blogPart.text}</p>
+
+
+            </div>
+        </>
+    )
 };
 
 export default BlogPostPart;
