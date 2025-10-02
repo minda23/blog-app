@@ -2,7 +2,7 @@
 import { useState, createContext } from "react";
 import Loader from "./Loader";
 import Menu from "@/app/components/menu";
-import Tag from "@/app/components/Tag";
+import Tag from "@/app/components/Tag"; 
 import './app.css';
 
 export const HeaderContext = createContext("React");
@@ -73,8 +73,7 @@ const HeaderPage = (props) => {
                                     blogCount={count}
                                      
                                    />
-                           
-                        ))}                                
+                           ))}                                
                     
                     </div>
                     <div>
